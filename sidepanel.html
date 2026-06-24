@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Appliper</title>
+    <link rel="dns-prefetch" href="https://appliper.io" />
+    <link rel="preconnect" href="https://appliper.io" crossorigin />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <iframe
+      id="appliperFrame"
+      title="Appliper"
+      allow="clipboard-read; clipboard-write"
+      loading="eager"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+
+    <!-- Job-description risk alert (populated by sidepanel.js) -->
+    <div id="jobWarning" class="jw" hidden role="alert" aria-live="assertive">
+      <div class="jw-card">
+        <button class="jw-close" id="jwClose" type="button" aria-label="Dismiss warning">&times;</button>
+        <div class="jw-head">
+          <span class="jw-icon">
+            <span class="jw-ripple"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.3 3.7 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.7a2 2 0 0 0-3.4 0z" />
+              <line x1="12" y1="9" x2="12" y2="13.5" />
+              <line x1="12" y1="17.5" x2="12.01" y2="17.5" />
+            </svg>
+          </span>
+          <div class="jw-titles">
+            <div class="jw-title">Heads up before you bid</div>
+            <div class="jw-sub" id="jwSub"></div>
+          </div>
+        </div>
+        <div class="jw-chips" id="jwChips"></div>
+      </div>
+    </div>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

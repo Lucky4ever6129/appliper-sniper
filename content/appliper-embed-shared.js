@@ -1,0 +1,1 @@
+const EMBED_FLAG="cappliper_embed";function isExtensionEmbed(){return sessionStorage.getItem(EMBED_FLAG)==="1"?!0:new URLSearchParams(window.location.search).get(EMBED_FLAG)==="1"?(sessionStorage.setItem(EMBED_FLAG,"1"),!0):!1}function markEmbedRoot(){return isExtensionEmbed()?(document.documentElement.classList.add("cappliper-embed"),!0):!1}

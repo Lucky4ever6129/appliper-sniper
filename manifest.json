@@ -1,0 +1,77 @@
+{
+  "manifest_version": 3,
+  "name": "Appliper Side Panel",
+  "version": "0.1.5",
+  "description": "Open appliper.io in a tab-specific Chrome side panel.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtqXWNI4Rx8idomkuPjHtpyu3zSj1HRUXabyyJ3MkOuo40TbjeG7j2T5nc+T+bqa4qjpdNfr1ICrgd2AZHZa3tvh3SClqC3R9tFb1NoyiEUF1npV17qZ58VSKDcdo6oV4Xx0z/CjPEgs/kBhC273cf+iPSuOv8IQsj1EXyXb8PILQGstfB9dh72BahyVZmC6KYypz1vlKLRB2tC14oAZgQlzaU0vVeRvghS1ZS9Gv2oy2QlznpCB9Rm875Zbew+4i3x1uGSI/2jZ0BXrllxdK06efCsVxOBJN95EIYTm8aMUB3H5WcPIMTihHaFdWoCo5KkTNrCKojgoArX45dUBSPwIDAQAB",
+  "update_url": "https://appliper.io/ext/updates.xml",
+  "permissions": [
+    "sidePanel",
+    "tabs",
+    "declarativeNetRequestWithHostAccess",
+    "scripting",
+    "storage",
+    "activeTab",
+    "clipboardWrite",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://appliper.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Toggle Appliper side panel",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "minimum_chrome_version": "116",
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "appliper_embed_rules",
+        "enabled": true,
+        "path": "rules/embed-rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://appliper.io/*"
+      ],
+      "js": [
+        "content/appliper-embed-shared.js",
+        "content/disable-animations.js",
+        "content/hide-embed-ui.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://appliper.io/*"
+      ],
+      "js": [
+        "content/enable-copy.js",
+        "content/appliper-autofill.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
